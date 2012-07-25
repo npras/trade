@@ -1,24 +1,14 @@
 # Trade
 
-TODO: Write a gem description
+Puzzlenode.com's first puzzle.
+
+http://puzzlenode.com/puzzles/1-international-trade
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'trade'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install trade
 
 ## Usage
 
-TODO: Write usage instructions here
 
 ## Contributing
 
