@@ -3,35 +3,29 @@ require "csv"
 module Trade
   class Transaction
 
-    FILE_PATH = 'data/SAMPLE_TRANS.csv'
+    #FILE_PATH = 'data/SAMPLE_TRANS.csv'
+    FILE_PATH = 'data/TRANS.csv'
 
     def initialize(file_path=FILE_PATH)
       @rows = CSV.read(file_path, headers: true)
-      total =  get_sku_total_cost "DM1182"
-      p sum_it_up total
+      #p get_sku_sales 'DM1182'
     end
 
-    def get_sku_total_cost(sku_item)
-      total= []
+    # Example input:
+    #   'DM1182'
+    # Example output:
+    #   ["19.68 AUD", "58.58 AUD", "54.64 USD"] 
+    def get_sku_sales(sku_item)
+      total_sales = []
       @rows.values_at("sku").flatten.each_with_index do |item, index|
         if item == sku_item
-          total << @rows.values_at("amount").flatten[index]
+          total_sales << @rows.values_at("amount").flatten[index]
         end
       end
-      total
-    end
-
-    # Example:
-    #  input (Array): ["19.68 AUD", "58.58 AUD", "54.64 USD"] 
-    #   output (Float): 132.9
-    def sum_it_up(arr)
-      total = arr.inject(0) do |sum, a|
-        sum + a.to_f
-      end
-      (total * 100).round/100.0
+      total_sales
     end
 
   end # class Transaction
 end # module Trade
 
-Trade::Transaction.new
+#Trade::Transaction.new
