@@ -17,9 +17,13 @@ module Trade
     #   ["19.68 AUD", "58.58 AUD", "54.64 USD"] 
     def get_sku_sales(sku_item)
       total_sales = []
-      @rows.values_at("sku").flatten.each_with_index do |item, index|
+      sku_values = @rows.values_at("sku").flatten
+      amount_values = @rows.values_at("amount").flatten
+      sku_values.each_with_index do |item, index|
         if item == sku_item
-          total_sales << @rows.values_at("amount").flatten[index]
+          # dumbest mistake
+          #total_sales << @rows.values_at("amount").flatten[index]
+          total_sales << amount_values[index]
         end
       end
       total_sales

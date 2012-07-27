@@ -17,6 +17,7 @@ module Trade
 
     def calculate
       sales = Trade::Transaction.new.get_sku_sales(@item)
+      #p sales.size
       conv = Trade::Conversion.new
       total = 0.0
 
@@ -29,6 +30,7 @@ module Trade
           total += (amount.to_f * conv.get_exchange_rate(currency, @currency))
         end
       end
+      #total
       banker_rounding(total)
     end # def calculate
 
@@ -36,11 +38,13 @@ module Trade
       # expected 134.22
       # got 134.23
       # BigDecimal is wrong!
+      # For RATES and TRANS data, the answer I got was:
+      # 59482.51855709883 
       BigDecimal.new(num.to_s).round(2, BigDecimal::ROUND_HALF_EVEN).to_f
     end
 
   end # class Sales
 end # module Trade
 
-Trade::Sales.new.calculate
+p Trade::Sales.new.calculate
 #Trade::Sales.new.banker_rounding
